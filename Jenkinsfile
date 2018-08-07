@@ -15,4 +15,13 @@ node{
     Vishal Ingale''', cc: '', from: '', replyTo: '', subject: 'Jenkins Build Info', to: 'vishalonwork@gmail.com'
 
   }
+  stage('Slack-Notification'){
+    slackSend baseUrl: 'https://hooks.slack.com/services/', 
+    channel: '#jenkins-demo', 
+    color: 'good', 
+    message: 'Welcome to Jenkins, Slack!!', 
+    teamDomain: 'avika-infotech', 
+    tokenCredentialId: 'jenkins-demo'
+
+  }
 }
