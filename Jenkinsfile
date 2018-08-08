@@ -6,6 +6,13 @@ node{
     //Defining Maven Home path
     def MVN_HOME = tool name: 'maven-3', type: 'maven'
     sh "${MVN_HOME}/bin/mvn clean package"
+    
+  stage('SonarQube analysis'){
+    def MVN_HOME = tool name: 'maven-3', type: 'maven'
+    withSonarQubeEnv('My SonarQube Server') {
+    sh "${MVN_HOME}/bin/mvn sonar:sonar"
+    }
+  }  
   }
   stage('Email Notification'){
     mail bcc: '', body: '''Hello,
